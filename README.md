@@ -78,13 +78,13 @@ If you use SUPREME, please cite the paper:
   title  = {SUPREME: A Multi-GPU Framework for Reproducible Image Unlearning Method Evaluation},
   author = {Andreou, Petros and Lanyon, Jamie and Finke, Axel and Cosma, Georgina},
   year   = {2026},
-  howpublished = {\url{https://github.com/pedroandreou/supreme-unlearning}}
+  howpublished = {}
 }
 ```
 
 ## Acknowledgement
 
-Petros Andreou is supported by a PhD studentship funded by [Darktrace](https://darktrace.com/). The funders had no role in the study design, data collection, analysis, interpretation, or in the decision to submit this work for publication.
+Petros Andreou is supported by a PhD studentship.
 
 ## License
 
