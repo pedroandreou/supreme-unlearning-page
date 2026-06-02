@@ -6,7 +6,7 @@ Project page for the paper **SUPREME: A Multi-GPU Framework for Reproducible Ima
 |---|---|
 | Live site | [https://pedroandreou.github.io/supreme-unlearning-page/](https://pedroandreou.github.io/supreme-unlearning-page/) |
 | Framework code | [https://github.com/pedroandreou/supreme-unlearning](https://github.com/pedroandreou/supreme-unlearning) |
-| Paper | (arXiv link to be added) |
+| Paper | [https://arxiv.org/abs/2606.00380](https://arxiv.org/abs/2606.00380) |
 
 ## What this repository is
 
@@ -67,7 +67,7 @@ All text and structure live in `index.html`. The page is organised top-to-bottom
 - **Acknowledgement**
 - **Footer**
 
-Update the arXiv URL in the hero badge and in the `Paper` line at the top of this file once an arXiv ID is available.
+The paper is on arXiv at [2606.00380](https://arxiv.org/abs/2606.00380); the hero badge and the `Paper` line at the top of this file link to it.
 
 ## Citation
 
@@ -78,7 +78,10 @@ If you use SUPREME, please cite the paper:
   title  = {SUPREME: A Multi-GPU Framework for Reproducible Image Unlearning Method Evaluation},
   author = {Andreou, Petros and Lanyon, Jamie and Finke, Axel and Cosma, Georgina},
   year   = {2026},
-  howpublished = {}
+  eprint = {2606.00380},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  url    = {https://arxiv.org/abs/2606.00380}
 }
 ```
 
