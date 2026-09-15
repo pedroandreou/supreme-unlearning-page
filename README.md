@@ -65,7 +65,7 @@ Homepage text and structure live in `index.html`. The page contains:
 - **Why training seeds matter** with the research motivation and nested-protocol guide
 - **Published results** with the existing ten-seed summaries and downloads
 - **Local example** using Python's standard library
-- **Framework comparison** adapted from presentation slide 2
+- **Framework comparison** covering domains, seeds, GPU execution and precision
 - **Teaser** showing the pipeline figure
 - **Abstract**
 - **Key Contributions**

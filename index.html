@@ -97,7 +97,7 @@
     <h2 class="title is-3">More unlearning seeds are not enough</h2>
     <p>Repeating unlearning on one trained model does not reveal how the outcome changes when the original model is trained again. When training contributes to variability, additional unlearning runs cannot generally replace independent training runs. <a href="https://arxiv.org/abs/2510.26714v5">Lanyon et al.</a> explain why and give guidance on allocating compute between training and unlearning repetitions.</p>
     <p>SUPREME supports the nested design needed to investigate these sources: <strong>I trained models → J unlearning repetitions per model → K evaluation repetitions per unlearned model.</strong> Separate stage seeds support the analysis; GPU and cluster execution support the repeated workload.</p>
-    <p>The framework provides this experiment structure, not an automatic variance-component report. The Pins results below use matched stage seeds and show combined variation. <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/seed_protocols.md">Read the variance formula, seed controls and interpretation limits →</a></p>
+    <p><a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/seed_protocols.md">Explore the seed design and variance analysis →</a></p>
   </div>
 </section>
 
@@ -106,7 +106,7 @@
     <div class="launch-section-title"><h2 class="title is-3">Start with the published results</h2><a href="results/">Open interactive viewer →</a></div>
     <p>Explore the paper's existing means and standard deviations. Switch models, scenarios and metrics, or download the tables to inspect locally.</p>
     <a href="results/"><img class="launch-figure" src="static/images/published-seed-variation.png" width="1200" height="630" alt="Existing Table 1 results: forget-accuracy differences and one standard deviation across ten seeds for ResNet18 and ViT, random-sample unlearning on Pins Face Recognition."></a>
-    <p class="launch-caption">Accuracy differences are unlearned minus retrained, in percentage points. Whiskers show one standard deviation, not confidence intervals. These experiments used one GPU and matched stage seeds (J = K = 1); the spread does not separate stage contributions.</p>
+    <p class="launch-caption">Accuracy differences are unlearned minus retrained, in percentage points. Whiskers show one standard deviation across ten matched-seed pipelines (J = K = 1), combining variation across stages. These experiments used one GPU.</p>
     <p><a href="results/pins_main.csv" download>Accuracy differences (CSV)</a> · <a href="results/pins_additional.csv" download>Appendix metrics (CSV)</a> · <a href="results/pins_raw.csv" download>Raw summaries and retraining (CSV)</a> · <a href="results/results.json" download>All tables (JSON)</a></p>
   </div>
 </section>
@@ -127,7 +127,7 @@ python3 examples/paper_results.py --output paper-results</code></pre>
 <section class="section launch-comparison" id="comparison">
   <div class="container is-max-desktop">
     <h2 class="title is-3">How the frameworks compare</h2>
-    <p>Adapted from slide 2 of the WIPE-OUT 2 presentation (September 2026). The columns describe the capabilities selected for that comparison.</p>
+    <p>SUPREME combines multi-seed image-unlearning evaluation with multi-GPU execution and configurable numerical precision.</p>
     <div class="table-container"><table class="table is-fullwidth">
       <thead><tr><th>Framework</th><th>Domain in the comparison</th><th>Multi-seed</th><th>Multi-GPU</th><th>Multi-precision</th></tr></thead>
       <tbody>
@@ -138,7 +138,7 @@ python3 examples/paper_results.py --output paper-results</code></pre>
         <tr class="supreme-row"><th scope="row">SUPREME</th><td>Image classification</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
       </tbody>
     </table></div>
-    <p class="launch-caption">“Yes” reproduces a check on the slide. “Not shown” means support was not identified in that comparison, not that it is impossible. This is a capability comparison, not measured speed or unlearning quality. <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/framework_comparison.md">Definitions, sources and scope</a>.</p>
+    <p class="launch-caption"><a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/framework_comparison.md">Feature definitions and sources</a>.</p>
     <p><a href="static/images/framework-comparison.png" download>Download comparison graphic</a> · <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/presentations/125_Andreou_Petros.pptx">Presentation slides</a></p>
   </div>
 </section>
