@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="SUPREME is an open-source multi-GPU framework for reproducible image unlearning method evaluation. Train, unlearn, and evaluate across multiple seeds with DDP, FSDP, and DeepSpeed support.">
-  <meta property="og:title" content="SUPREME: A Multi-GPU Framework for Reproducible Image Unlearning Method Evaluation"/>
-  <meta property="og:description" content="Open-source framework that distributes the train / unlearn / evaluate pipeline across multiple GPUs, with a registry-based design for adding new methods, metrics, models, and scenarios."/>
+  <meta name="description" content="Evaluate image unlearning beyond a single trained model. Control training, unlearning and evaluation seeds separately, from one GPU to a cluster.">
+  <meta property="og:title" content="SUPREME: evaluate unlearning beyond a single trained model"/>
+  <meta property="og:description" content="More unlearning seeds cannot generally replace independent training runs. Explore the research, seed protocols and published results."/>
   <meta property="og:url" content="https://pedroandreou.github.io/supreme-unlearning-page/"/>
-  <meta property="og:image" content="static/images/supreme_pipeline.png" />
+  <meta property="og:image" content="https://pedroandreou.github.io/supreme-unlearning-page/static/images/published-seed-variation.png" />
+  <meta property="og:image:alt" content="Published forget-accuracy differences on Pins Face Recognition, with means and standard deviations across ten seeds." />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
-  <meta name="twitter:title" content="SUPREME: A Multi-GPU Framework for Reproducible Image Unlearning Method Evaluation">
-  <meta name="twitter:description" content="Open-source multi-GPU framework for reproducible image unlearning. DDP, FSDP, DeepSpeed ZeRO. Registry-based extensibility.">
-  <meta name="twitter:image" content="static/images/supreme_pipeline.png">
+  <meta name="twitter:title" content="SUPREME: evaluate unlearning beyond a single trained model">
+  <meta name="twitter:description" content="Control training, unlearning and evaluation seeds separately. Explore the research and published results, with no account required.">
+  <meta name="twitter:image" content="https://pedroandreou.github.io/supreme-unlearning-page/static/images/published-seed-variation.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="keywords" content="machine unlearning, image classification, multi-GPU, distributed training, Lightning Fabric, PyTorch, reproducibility, evaluation framework, DDP, FSDP, DeepSpeed">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,17 +21,12 @@
   <title>SUPREME: A Multi-GPU Framework for Reproducible Image Unlearning Method Evaluation</title>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/launch.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
 </head>
 <body>
 
@@ -40,7 +36,16 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title">SUPREME: A Multi-GPU Framework for Reproducible Image Unlearning Method Evaluation</h1>
+          <p class="launch-brand">SUPREME</p>
+          <h1 class="title is-2 publication-title">Evaluate unlearning beyond<br>a single trained model.</h1>
+          <p class="launch-lead">Control training, unlearning and evaluation seeds separately. Compare methods against retraining, from one GPU to a cluster, through an extensible Python API.</p>
+          <div class="launch-actions">
+            <a class="button is-primary" href="results/">Explore published results</a>
+            <a class="button" href="#try-example">Try the local example</a>
+            <a class="button" href="https://github.com/pedroandreou/supreme-unlearning/blob/main/notebooks/custom_components.ipynb">Add your method</a>
+          </div>
+          <p class="launch-install"><code>pip install supreme-unlearning</code></p>
+          <p class="launch-note">WIPE-OUT 2 · ECML-PKDD 2026 · Open source</p>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block">Petros Andreou<sup>1</sup>,</span>
@@ -84,6 +89,57 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="section" id="why-seeds">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">More unlearning seeds are not enough</h2>
+    <p>Repeating unlearning on one trained model does not reveal how the outcome changes when the original model is trained again. When training contributes to variability, additional unlearning runs cannot generally replace independent training runs. <a href="https://arxiv.org/abs/2510.26714v5">Lanyon et al.</a> explain why and give guidance on allocating compute between training and unlearning repetitions.</p>
+    <p>SUPREME supports the nested design needed to investigate these sources: <strong>I trained models → J unlearning repetitions per model → K evaluation repetitions per unlearned model.</strong> Separate stage seeds support the analysis; GPU and cluster execution support the repeated workload.</p>
+    <p>The framework provides this experiment structure, not an automatic variance-component report. The Pins results below use matched stage seeds and show combined variation. <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/seed_protocols.md">Read the variance formula, seed controls and interpretation limits →</a></p>
+  </div>
+</section>
+
+<section class="section launch-results" id="results">
+  <div class="container is-max-desktop">
+    <div class="launch-section-title"><h2 class="title is-3">Start with the published results</h2><a href="results/">Open interactive viewer →</a></div>
+    <p>Explore the paper's existing means and standard deviations. Switch models, scenarios and metrics, or download the tables to inspect locally.</p>
+    <a href="results/"><img class="launch-figure" src="static/images/published-seed-variation.png" width="1200" height="630" alt="Existing Table 1 results: forget-accuracy differences and one standard deviation across ten seeds for ResNet18 and ViT, random-sample unlearning on Pins Face Recognition."></a>
+    <p class="launch-caption">Accuracy differences are unlearned minus retrained, in percentage points. Whiskers show one standard deviation, not confidence intervals. These experiments used one GPU and matched stage seeds (J = K = 1); the spread does not separate stage contributions.</p>
+    <p><a href="results/pins_main.csv" download>Accuracy differences (CSV)</a> · <a href="results/pins_additional.csv" download>Appendix metrics (CSV)</a> · <a href="results/pins_raw.csv" download>Raw summaries and retraining (CSV)</a> · <a href="results/results.json" download>All tables (JSON)</a></p>
+  </div>
+</section>
+
+<section class="section" id="try-example">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Try the results example</h2>
+    <p>Python 3.9 or later is enough to read the published tables. This example uses only the standard library and runs no experiments.</p>
+    <pre><code>git clone https://github.com/pedroandreou/supreme-unlearning.git
+cd supreme-unlearning
+python3 examples/paper_results.py
+python3 examples/paper_results.py --output paper-results</code></pre>
+    <p>Open <code>paper-results/index.html</code> in your browser. The viewer and its downloads work offline.</p>
+    <p>For actual training, unlearning and evaluation, follow the <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/reproducing_the_paper.md">paper reproduction guide</a> and <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/environment_setup.md">environment setup</a>.</p>
+  </div>
+</section>
+
+<section class="section launch-comparison" id="comparison">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">How the frameworks compare</h2>
+    <p>Adapted from slide 2 of the WIPE-OUT 2 presentation (September 2026). The columns describe the capabilities selected for that comparison.</p>
+    <div class="table-container"><table class="table is-fullwidth">
+      <thead><tr><th>Framework</th><th>Domain in the comparison</th><th>Multi-seed</th><th>Multi-GPU</th><th>Multi-precision</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="https://github.com/locuslab/open-unlearning">OpenUnlearning</a></th><td>LLMs</td><td>Not shown</td><td>Yes</td><td>Yes</td></tr>
+        <tr><th scope="row"><a href="https://doi.org/10.1145/3734436.3734454">MUBox</a></th><td>Image classification</td><td>Not shown</td><td>Not shown</td><td>Not shown</td></tr>
+        <tr><th scope="row"><a href="https://github.com/aiim-research/ERASURE">ERASURE</a></th><td>Image classification</td><td>Yes</td><td>Not shown</td><td>Not shown</td></tr>
+        <tr><th scope="row"><a href="https://github.com/xcadet/deepunlearn">Deep Unlearn</a></th><td>Image classification</td><td>Yes</td><td>Not shown</td><td>Not shown</td></tr>
+        <tr class="supreme-row"><th scope="row">SUPREME</th><td>Image classification</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      </tbody>
+    </table></div>
+    <p class="launch-caption">“Yes” reproduces a check on the slide. “Not shown” means support was not identified in that comparison, not that it is impossible. This is a capability comparison, not measured speed or unlearning quality. <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/framework_comparison.md">Definitions, sources and scope</a>.</p>
+    <p><a href="static/images/framework-comparison.png" download>Download comparison graphic</a> · <a href="https://github.com/pedroandreou/supreme-unlearning/blob/main/docs/presentations/125_Andreou_Petros.pptx">Presentation slides</a></p>
   </div>
 </section>
 
@@ -145,7 +201,7 @@
         <div class="box" style="height: 100%;">
           <h3 class="title is-5"><span class="icon has-text-info"><i class="fas fa-flask"></i></span>&nbsp; Demonstration</h3>
           <p>
-            Pins Face Recognition with ResNet18 and ViT, full-class and random-sample unlearning, across ten seeds. The first multi-seed image unlearning study on this benchmark, surfacing across-seed variance that single-seed evaluations miss.
+            The paper reports Pins Face Recognition experiments with ResNet18 and ViT, full-class and random-sample unlearning, across ten seeds on one GPU. Several configurations show substantial variation across seeds.
           </p>
         </div>
       </div>
@@ -176,12 +232,12 @@
               <td>ResNet18, Vision Transformer (ViT)</td>
             </tr>
             <tr>
-              <td><strong>Baselines</strong></td>
-              <td>Retrain, Original</td>
+              <td><strong>Baseline and reference</strong></td>
+              <td>Retrain (baseline), Original (unmodified reference)</td>
             </tr>
             <tr>
               <td><strong>Unlearning methods</strong></td>
-              <td>Fine-Tuning (FT), Bad Teacher (BadT), Random Labels (RL), UNSIR, SSD, LFSSD</td>
+              <td>Fine-Tuning (FT), Bad Teacher (BadT), Random Labels (RL), UNSIR, SSD, LFSSD, SSD-Det, LFSSD-Det, ASSD, SCRUB, JIT</td>
             </tr>
             <tr>
               <td><strong>Evaluation metrics</strong></td>
@@ -216,7 +272,7 @@
     <h2 class="title is-3 has-text-centered">The pipeline</h2>
     <div class="content has-text-justified" style="margin-top: 1.5rem;">
       <p>
-        SUPREME runs a three-stage pipeline parameterised by three independent seeds, allowing users to isolate variance from each stage:
+        SUPREME runs a three-stage pipeline with separately configurable seeds, supporting nested experiments that investigate variation at each stage:
       </p>
       <ol>
         <li><strong>Stage 1, Training.</strong> Train the original model <i>M<sub>o</sub></i> on the full dataset <i>D</i> using training seed <i>s<sub>t</sub></i>.</li>
@@ -224,7 +280,7 @@
         <li><strong>Stage 3, Evaluation.</strong> Evaluate <i>M<sub>u</sub></i> against <i>M<sub>r</sub></i> on the test forget and retain sets using evaluation seed <i>s<sub>e</sub></i>, computing the configured metrics in <i>E</i>.</li>
       </ol>
       <p>
-        Running every method under the same seed configuration ensures every method is evaluated under identical starting conditions for a given seed, isolating method differences from pipeline randomness. The retrained baseline <i>M<sub>r</sub></i> is produced once per (<i>s<sub>t</sub></i>, <i>j</i>, <i>c</i>), shared across all methods, avoiding redundant retraining.
+        Methods share the seed configuration and original model for a given run. The retrained baseline <i>M<sub>r</sub></i> is produced once per (<i>s<sub>t</sub></i>, <i>j</i>, <i>c</i>) and shared across methods. The matched protocol used in the paper combines the sources of randomness; separate stage seeds support further investigation.
       </p>
     </div>
   </div>
@@ -277,12 +333,12 @@
             <tr><td>LFSSD</td><td>-68.33 &plusmn; 15.28</td><td>-58.61 &plusmn; 19.20</td><td>40.82 &plusmn; 8.72</td></tr>
 
             <tr><td rowspan="11"><strong>ViT</strong></td><td rowspan="6">Full-class</td><td>FT</td><td>0.03 &plusmn; 0.06</td><td>-22.66 &plusmn; 23.47</td><td>105.29 &plusmn; 1.31</td></tr>
-            <tr><td>BadT</td><td>17.90 &plusmn; 5.18</td><td><strong>-0.88 &plusmn; 0.10</strong></td><td><strong>33.97 &plusmn; 0.12</strong></td></tr>
+            <tr><td>BadT</td><td>17.90 &plusmn; 5.18</td><td>-0.88 &plusmn; 0.10</td><td><strong>33.97 &plusmn; 0.12</strong></td></tr>
             <tr><td>UNSIR</td><td>35.52 &plusmn; 4.92</td><td>-0.31 &plusmn; 0.13</td><td>39.38 &plusmn; 0.18</td></tr>
-            <tr><td>RL</td><td><strong>0.00 &plusmn; 0.00</strong></td><td>0.20 &plusmn; 0.05</td><td>36.92 &plusmn; 0.18</td></tr>
+            <tr><td>RL</td><td><strong>0.00 &plusmn; 0.00</strong></td><td><strong>0.20 &plusmn; 0.05</strong></td><td>36.92 &plusmn; 0.18</td></tr>
             <tr><td>SSD</td><td><strong>0.00 &plusmn; 0.00</strong></td><td>-2.40 &plusmn; 0.99</td><td>63.38 &plusmn; 2.58</td></tr>
             <tr><td>LFSSD</td><td><strong>0.00 &plusmn; 0.00</strong></td><td>-3.88 &plusmn; 2.11</td><td>86.77 &plusmn; 6.07</td></tr>
-            <tr><td rowspan="5">Random</td><td>FT</td><td>8.33 &plusmn; 5.40</td><td>1.42 &plusmn; 0.12</td><td>60.40 &plusmn; 0.19</td></tr>
+            <tr><td rowspan="5">Random</td><td>FT</td><td><strong>8.33 &plusmn; 5.40</strong></td><td>1.42 &plusmn; 0.12</td><td>60.40 &plusmn; 0.19</td></tr>
             <tr><td>BadT</td><td><strong>-8.33 &plusmn; 7.97</strong></td><td><strong>0.21 &plusmn; 0.52</strong></td><td><strong>32.76 &plusmn; 0.18</strong></td></tr>
             <tr><td>RL</td><td>-76.67 &plusmn; 11.94</td><td>1.33 &plusmn; 0.12</td><td>35.71 &plusmn; 0.20</td></tr>
             <tr><td>SSD</td><td>-55.00 &plusmn; 37.99</td><td>-54.09 &plusmn; 45.60</td><td>171.80 &plusmn; 84.31</td></tr>

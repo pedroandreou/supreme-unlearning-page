@@ -1,0 +1,33 @@
+:root { --supreme-purple: #582c83; --supreme-ink: #201c2c; }
+html { scroll-behavior: smooth; }
+body { color: var(--supreme-ink); }
+a { color: var(--supreme-purple); }
+a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid #b37ddb; outline-offset: 4px; }
+.hero .hero-body { padding-bottom: 2rem; }
+.launch-brand { color: var(--supreme-purple); font-size: 1rem; font-weight: 800; letter-spacing: .18em; margin-bottom: 1.5rem; }
+.publication-title { font-size: clamp(2rem, 4.8vw, 3.15rem) !important; letter-spacing: -.035em; line-height: 1.15; }
+.launch-lead { max-width: 750px; margin: 1.4rem auto; font-size: 1.15rem; color: #625d70; }
+.launch-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 1.75rem 0; }
+.launch-actions .button { height: auto; padding: 12px 18px; border-radius: 7px; }
+.launch-actions .button.is-primary { background-color: var(--supreme-purple); }
+.launch-install { margin: 1.2rem 0; }
+.launch-install code { padding: 12px 18px; color: var(--supreme-purple); background: #f2edf7; border-radius: 7px; }
+.launch-note { color: #625d70; font-size: .85rem; margin: 1.5rem 0; }
+.publication-authors { font-size: .9rem !important; }
+.launch-results, .launch-comparison { background: #faf8fc; }
+.launch-section-title { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+.launch-figure { display: block; width: 100%; height: auto; margin: 1.3rem 0; border: 1px solid #e3dce9; border-radius: 12px; }
+.launch-caption { font-size: .9rem; color: #625d70; margin: .8rem 0 1.25rem; }
+#try-example p { margin: 1rem 0; }
+#try-example pre { border-radius: 8px; border: 1px solid #e3dce9; background: #faf8fc; margin: 1.5rem 0; }
+.launch-comparison .table-container { margin-top: 1.5rem; }
+.launch-comparison .table td, .launch-comparison .table th { padding: .8rem; vertical-align: middle; }
+.supreme-row { background: #e9def3; font-weight: 650; }
+.table { font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) {
+  .hero-body, .section { padding: 2rem 1rem; }
+  .launch-actions { flex-direction: column; }
+  .launch-actions .button { white-space: normal; }
+  .launch-comparison .table { font-size: .82rem; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

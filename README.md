@@ -10,7 +10,11 @@ Project page for the paper **SUPREME: A Multi-GPU Framework for Reproducible Ima
 
 ## What this repository is
 
-A static, single-page academic project page describing what SUPREME introduces: a multi-GPU pipeline for reproducibly evaluating image unlearning methods, with a registry-based design that lets new datasets, models, methods, and metrics be added without modifying framework code. The page is structured as a typical academic project page: hero with title and authors, paper teaser figure, abstract, key contributions, framework components table, pipeline walkthrough, demonstration results on Pins Face Recognition, BibTeX, and acknowledgement.
+A static project page for SUPREME, with a published-results viewer at `results/`.
+The homepage introduces the framework, links to a local results example, compares
+framework capabilities, and provides the paper's technical background, component
+matrix, pipeline, results and citation. The viewer works offline and provides CSV
+and JSON downloads of the existing paper tables.
 
 The page is built on the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template) by Eliahu Horwitz, itself adapted from the [Nerfies](https://nerfies.github.io) project page. It uses [Bulma](https://bulma.io/), [FontAwesome](https://fontawesome.com/), and [Academicons](https://jpswalsh.github.io/academicons/) for styling.
 
@@ -42,6 +46,7 @@ supreme-unlearning-page/
 ├── index.html                              Single-page site source
 ├── README.md                               This file
 ├── .nojekyll                               Tells Pages to skip Jekyll processing
+├── results/                                Offline viewer and published CSV/JSON tables
 └── static/
     ├── css/                                Bulma + FontAwesome stylesheets
     ├── images/
@@ -54,9 +59,13 @@ The teaser figure `supreme_pipeline.png` is rendered from `supreme_diagram.tex` 
 
 ## Editing the content
 
-All text and structure live in `index.html`. The page is organised top-to-bottom into the following sections; search for the corresponding `<section>` element to edit:
+Homepage text and structure live in `index.html`. The page contains:
 
 - **Hero** with title, authors, affiliations, and badges (arXiv, Code, BibTeX)
+- **Why training seeds matter** with the research motivation and nested-protocol guide
+- **Published results** with the existing ten-seed summaries and downloads
+- **Local example** using Python's standard library
+- **Framework comparison** adapted from presentation slide 2
 - **Teaser** showing the pipeline figure
 - **Abstract**
 - **Key Contributions**
@@ -68,6 +77,19 @@ All text and structure live in `index.html`. The page is organised top-to-bottom
 - **Footer**
 
 The paper is on arXiv at [2606.00380](https://arxiv.org/abs/2606.00380); the hero badge and the `Paper` line at the top of this file link to it.
+
+## Results and figure sources
+
+The canonical CSV tables, metadata and viewer template live in the framework
+repository under `docs/results/` and `examples/`. To export a viewer from a local
+framework checkout, run `python3 examples/paper_results.py --output <new-directory>`.
+Copy the exported files into this site's `results/` directory after reviewing the
+diff. Do not independently edit numeric values in the generated HTML or JSON.
+
+The PNGs `static/images/published-seed-variation.png` and
+`static/images/framework-comparison.png` are rendered by
+`scripts/render_launch_assets.py` in the framework repository. They reuse the
+published tables and the comparison from slide 2; they contain no new experiments.
 
 ## Citation
 
